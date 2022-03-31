@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <style>
+        .cartthings{
+            display: grid;
+            grid-template-columns: repeat(1,25%);
+            align-items: center;
+            width: 50%;
+
+            text-align: center;
+            /* border: 2px solid black; */
+
+        }
+        .cartthings button{
+            padding: 10px 30px;
+            color: white;
+            background-color: black;
+            margin-top: 10px;
+        }
+        .cartthings img{
+            width: 200px;
+            height: 250px;
+            border: 2px solid gray;
+        }
+     
+        .cartfetch>:nth-child(1){
+            border: 2px solid green;
+            width: 40%;
+            margin-right: 10%;
+            font-size: 30px;
+            text-align: center;
+        }
+        
+        .cartfetch>:nth-child(2){
+            /* border:  2px solid black; */
+            width: 50%;
+        }
+        div1{
+            display: flex;
+        }
+        #imgdiv{
+            display: flex;
+        }
+        #div2{
+            /* border: 2px solid red; */
+        }
+        #check{
+            /* border: 2px solid green ; */
+        }
+        .cartthings >:nth-child(1){
+            /* border:  2px solid black; */
+        }
+        .cartflex{
+            display: flex;
+            /* border: 2px solid yellow; */
+            width: 80%;
+            margin: auto;
+            gap: 30px;
+        }
+        /* .cartflex >:nth-child(2){
+            border: 2px solid black ;
+          
+        } */
+        .checkoutpage{
+           
+        }
+        .btn{
+            padding: 15px 50%;
+            font-size: 20px;
+            color:  white;
+            background-color: black;
+        }
+        
+       
+    </style>
+</head>
+<body>
+    <div class="mainHeader"></div>
+
+    <div class="cartflex">
+
+        <div class="cartthings"> </div>
+        <div class="checkoutpage">
+            <img src="./images/checkout1.jpg" alt="">
+          <a href="checkout.html"> <button class="btn">checkout</button></a> 
+        </div>
+
+    </div>
+    
+      
+       
+   
+
+        <div class="footerpage"></div>
+    
+</body>
+</html>
+<script>
+      var cartArr=JSON.parse(localStorage.getItem("cartitem"))|| [];
+   
+   
+      display(cartArr)
+    
+    function display(cartArr){
+
+    document.querySelector(".cartthings").innerHTML = ""
+
+
+    cartArr.map(function(product,index){
+    
+    let img = document.createElement("img");
+    img.src = product.img_url;
+
+    let name = document.createElement("p");
+    name.innerText = product.Product_name;
+
+    let desc = document.createElement("p");
+    desc.innerText = product.about_product;
+
+    let price = document.createElement("p");
+    price.innerText = product.price;
+  
+    let btn = document.createElement("button");
+    btn.innerText = "delete";
+
+    btn.addEventListener("click", function(){
+        deletecart(index)
+    })
+    let check = document.createElement("button");
+    check.innerHTML="checkout"
+    let div1 = document.createElement("div"); 
+   
+    let div2 = document.createElement("div");
+    div2.setAttribute("id", div2)
+    div1.append(img)
+    div2.append(name, desc, price , btn,check)
+    
+
+    let div = document.createElement("div");
+    div.setAttribute("id", "imgdiv")
+    div.append(div1,div2 )
+    let appendthigs = document.querySelector(".cartthings")
+    appendthigs.append(div);
+
+})
+
+      }
+
+
+    function deletecart(index){
+        cartArr.splice(index, 1)
+        localStorage.setItem("cartitem", JSON.stringify(cartArr))
+        display(cartArr)
+    }
+            
+</script>
+<script type="module">
+
+    import header from "./header.js"; document.querySelector(".mainHeader").innerHTML = header(); import footer from "./footer.js"; document.querySelector(".footerpage").innerHTML = footer();
+
+</script>

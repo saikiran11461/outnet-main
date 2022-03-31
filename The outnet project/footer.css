@@ -1,0 +1,110 @@
+* {
+    padding: 0%;
+    margin: 0%;
+}
+
+.footer {
+    display: grid;
+    margin: auto;
+    margin-top: 50px;
+    width: 80%;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-rows: 310px ; */
+}
+
+.footer>div {
+    margin: 7px;
+}
+
+.footadd {
+    background-image: url("https://a.travel-assets.com/globalcontrols-service/content/f285fb631b0a976202ef57611c7050e9ef5ca51a/images/EG_Wordmark_blue_RGB.svg");
+    background-repeat: no-repeat;
+}
+
+h4 {
+    margin-top: 0px;
+}
+
+.footer>div>p {
+    /* color: #3a72c3; */
+    font-size: 13px;
+}
+
+.footer>div>p:hover {
+    text-decoration: underline;
+}
+
+.end {
+    display: flex;
+    margin: auto;
+    width: 85%;
+}
+
+.end>div {
+    /* border: 1px solid red; */
+    margin: 5px;
+    flex: 1;
+    text-align: center;
+    /* padding-top: 20px; */
+    padding-bottom: 0px;
+}
+
+.end>div>h4 {
+    margin-top: 20px;
+}
+
+.end>div:nth-child(1):hover {
+    background-color: black;
+    color: white;
+}
+
+.end>div:nth-child(2):hover {
+    background-color: black;
+    color: white;
+}
+
+.end>div:nth-child(3) {
+    font-size: 12px;
+    text-align: right;
+    flex: 2;
+}
+
+hr {
+    color: grey;
+    width: 85%;
+}
+
+.visa>img {
+    width: 60%;
+}
+
+.email_input {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.email_input>div {
+    margin: 5px;
+    border: 1px solid gray;
+    padding: 0px 25px;
+}
+
+.email_input>div:hover {
+    border: #d3d3d3;
+}
+
+.small_icon {
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid red; */
+}
+
+.small_icon>img {
+    /* border: 1px solid red; */
+    width: 10%;
+    height: 5%;
+}
+
+.social_media>img {
+    width: 70%;
+}

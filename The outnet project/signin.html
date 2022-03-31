@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="signin.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+</head>
+
+<body>
+    <div class="mainHeader"></div>
+    <div id="main">
+        <form id="form" >
+            <h3>welcome</h3>
+            <hr>
+            <label for=""><h3>Email</h3></label><br>
+            <input type="text" id="email" placeholder="entermail"><br>
+            <label for=""><h3>Password</h3></label><br>
+            <input type="password" id="password" placeholder=""><br>
+            <input id="btn" type="submit" value="sign in">
+        </form>
+    </div>
+</body>
+
+<div class="footerpage"></div>
+
+</html>
+
+
+<script type="module">
+
+    import header from "./header.js"; document.querySelector(".mainHeader").innerHTML = header(); import footer from "./footer.js"; document.querySelector(".footerpage").innerHTML = footer();
+
+</script>
+
+<script>
+    // document.querySelector("#form").addEventListener("submit", formsubmit);
+    // var arr = JSON.parse(localStorage.getItem("data")) || [];
+    const form = document.getElementById("form");
+    form.addEventListener("submit", registerUser)
+
+  async  function registerUser(event) {
+        event.preventDefault();
+        // var firstName = document.querySelector("#First").value;
+        // var lastName = document.querySelector("#last").value;
+        var email = document.querySelector("#email").value;
+        var password = document.querySelector("#password").value;
+
+       const result = await fetch("https://outnet-backend.herokuapp.com/login" ,{
+           method:"POST",
+           headers:{
+               "Content-Type":"application/json",
+           },
+           body:JSON.stringify({
+             
+               email,
+               password
+           })
+       }).then((res)=> res.json())
+       console.log(result)
+       if(result.status === "ok"){
+           console.log("Got the token:",result.data);
+           localStorage.setItem("token",result.data)
+           alert("Success")
+           window.location.href="index.html"
+       }else{
+        //    alert(result.error("username or password not matching"))
+           alert("username or password not matching")
+           console.log("wrong username or password")
+       }
+    }
+
+</script>
+<!-- <script src="./signin.js"></script> -->

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+
+<body>
+
+    <div class="mainHeader"></div>
+    
+    <!-- <hr> -->
+    <div class="imgupper">
+        <div>
+            <h2>DOLCE & GABBANA</h2>
+            <h4>Italian powerhouse Dolce & Gabbana is famed for its high-energy runway shows rooted <br> in Sicilian elegance. Our edit captures the best of the label's romantic silhouettes, with <br> a focus on figure-flattering shapes and beautiful tailoring.
+            <br>you’ll want to browse this edit immediately, and come back and check it again regularly!
+        </h4>
+        </div>
+        <div>
+            <img src="./images/upperq.png" alt="">
+        </div>
+         
+    </div>
+    <hr>
+   
+   
+
+    <div class="flexing">
+
+       <div id="users_div"></div>
+
+        <select id="pricesort" onchange="selectprice()">
+            <option value="">select sort</option>
+            <option value="high">High to Low</option>
+            <option value="low">Low to High</option>
+          </select>
+    
+       
+       
+    </div>
+    <div class="footerpage"></div>
+   
+</body>
+
+</html>
+
+<script>
+    let url = "https://outnet-backend.herokuapp.com/products";
+    let responce = []
+
+    async function getusers() {
+
+    try {
+    let res = await fetch(url);
+     responce = await res.json();
+    // console.log(responce)
+    appendusers(responce)
+    
+    } catch (err) {
+    console.log(err)
+}
+
+}
+
+getusers();
+
+    let cartArr =JSON.parse(localStorage.getItem("cartitem")) || [];
+
+    appendusers(responce) 
+    
+   
+    function selectprice(){
+        document.querySelector("#users_div").innerHTML = null
+     var select=document.querySelector("#pricesort").value;
+     if(select=="high"){
+    responce.sort(function(a,b){
+      return Number(b.price)-Number(a.price);
+    })
+    appendusers(responce) 
+  }
+  if(select=="low"){
+    responce.sort(function(a,b){
+      return Number(a.price)-Number(b.price);
+    })
+    appendusers(responce) 
+  } 
+
+}
+     
+      
+
+  
+
+
+    function appendusers(responce) {
+        responce.forEach(function(product) {
+            let img = document.createElement("img");
+            img.src = product.img_url;
+
+            let name = document.createElement("p");
+            name.innerText = product.Product_name;
+
+            let desc = document.createElement("p");
+            desc.innerText = product.about_product;
+
+            let price = document.createElement("h4");
+            price.setAttribute("id",price)
+            price.innerText = product.price;
+
+          
+            let btn = document.createElement("button");
+            btn.innerText = "Add to cart";
+
+            btn.addEventListener("click", function(){
+                addtocart(product)
+            })
+
+            let div = document.createElement("div");
+            div.append(img, name, desc, price , btn)
+
+            users_div.append(div)
+        })
+    }
+
+    function addtocart(product){
+        cartArr.push(product)
+        console.log(cartArr)
+        localStorage.setItem("cartitem", JSON.stringify(cartArr))
+    }
+
+
+
+
+
+  
+</script>
+<script type="module">
+
+    import header from "./header.js"; document.querySelector(".mainHeader").innerHTML = header(); import footer from "./footer.js"; document.querySelector(".footerpage").innerHTML = footer();
+
+</script>

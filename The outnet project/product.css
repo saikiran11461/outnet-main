@@ -1,0 +1,83 @@
+.flexing{
+    display: flex;
+    /* border: 2px solid red; */
+    width: 80%;
+    margin: auto;
+   
+}
+#pricesort{
+    width: 30%;
+    height: 50px;
+    top: 30px;
+    /* border: 2px solid green; */
+}
+#users_div {
+    
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    margin: 5%;
+    grid-gap: 20px;
+    text-align: center;
+    width: 60%;
+    margin: auto;
+    margin-top: 40px;
+    font-size: 15px;
+    color: gray;
+    /* border: 2px solid red; */
+   
+}
+#users_div button{
+    padding: 10px 30px;
+    color: white;
+    background-color: black;
+    border-radius: 20px;
+}
+#users_div h4{
+    color: red;
+}
+
+#users_div img {
+    width: 150px;
+    height: 250px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 25px;
+}
+.imgupper{
+    width: 80%;
+    height: 350px;
+    /* border: 2px solid red; */
+    margin: auto;
+    display: flex;
+}
+.imgupper>:nth-child(1){
+    /* border: 2px solid green; */
+    width: 55%;
+    margin: 30px;
+    font-size: 20px;
+    margin-left: 100px;
+    margin-top: 90px;
+}
+.imgupper>:nth-child(1) h4{
+   color: gray;
+   font-size: 17px;
+}
+/* .imgupper>:nth-child(1) {
+   color: gray;
+} */
+.imgupper>:nth-child(2){
+    /* border: 2px solid yellow; */
+    width: 20%;
+    margin: 25px;
+    margin-right: 70px;
+}
+.imgupper>:nth-child(2) img{
+    width: 270px;
+    height: 300px;
+    object-fit: cover;
+    
+}
+hr{
+    width: 80%;
+    margin: auto;
+    color: gray;
+}
